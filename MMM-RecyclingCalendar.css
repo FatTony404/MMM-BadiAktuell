@@ -1,0 +1,36 @@
+.MMM-RecyclingCalendar .entries-container {
+    width: 400px;
+    line-height: 1.75;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    border-bottom: solid 1px #222222;
+    position: relative;
+    text-align: left
+}
+  
+ .MMM-RecyclingCalendar .entries-container .entry-date {
+    color: #FFF;
+}
+
+.MMM-RecyclingCalendar .entries-container .entry-icon-container {
+    white-space: nowrap;
+    position: absolute;
+    right : 0px;
+    top: 6px;
+    line-height: 24px;
+  }
+  
+.MMM-RecyclingCalendar .entries-container .entry-icon-container .entry-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    vertical-align: bottom;
+    display: inline;
+    position: relative;
+    margin-left:4px;
+}
+
+.italic {
+    font-style: italic;
+}
