@@ -5,6 +5,9 @@ Data source:
 - https://data.stadt-zuerich.ch/dataset/wassertemperaturen-freibaeder
 - https://data.stadt-zuerich.ch/dataset/wassertemperaturen-freibaeder/resource/548d1ceb-1daf-4cf9-a14a-92c86326824d
 
+Additional package used: 
+- https://www.npmjs.com/package/xml2js
+
 ## Installation - todo 
 Clone this repository in your modules folder, and install dependencies:
 
