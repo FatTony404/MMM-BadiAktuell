@@ -1,6 +1,10 @@
 # MMM-BadiAktuell
 Module to display watertemperatures of Zurichs public baths
 
+Data source: 
+- https://data.stadt-zuerich.ch/dataset/wassertemperaturen-freibaeder
+- https://data.stadt-zuerich.ch/dataset/wassertemperaturen-freibaeder/resource/548d1ceb-1daf-4cf9-a14a-92c86326824d
+
 ## Installation - todo 
 Clone this repository in your modules folder, and install dependencies:
 
