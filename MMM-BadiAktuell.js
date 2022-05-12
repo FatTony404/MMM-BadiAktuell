@@ -1,4 +1,4 @@
-Module.register("MMM-RecyclingCalendar", {
+Module.register("MMM-BadiAktuell", {
     
   defaults: {
     zipCode: 8047, 
@@ -18,7 +18,7 @@ Module.register("MMM-RecyclingCalendar", {
 
   // define required style sheets 
   getStyles: function () {
-    return ["MMM-RecyclingCalendar.css"];
+    return ["MMM-BadiAktuell.css"];
   },  
   
   // define required scripts
