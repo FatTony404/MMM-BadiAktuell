@@ -3,7 +3,8 @@ Module.register("MMM-BadiAktuell", {
   defaults: {
     zipCode: 8047, 
     daysToDisplay: 7,  
-    url: "http://openerz.metaodi.ch/api/calendar.json",
+    // url: "http://openerz.metaodi.ch/api/calendar.json",
+    url: "https://www.stadt-zuerich.ch/stzh/bathdatadownload",
     sort: "date",
     showDate: "daysAndDate",
     showTypes: "",
@@ -44,12 +45,18 @@ Module.register("MMM-BadiAktuell", {
     this.pollTime; 
     this.hideTime = 30000; // hides update hint after given time 
 
-    this.getRecyclingData();
+    // this.getRecyclingData();
+    this.getBathingData();
     var self = this; 
     setInterval(function() {
-      self.getRecyclingData();
+      // self.getRecyclingData();
+      self.getBathingData();
       self.pollTime = moment().format('HH:mm:ss');
     }, this.config.pollFrequency);
+  },
+
+  getBathingData: function(){
+    this.sendSocketNotification('TEMP_GET', this.config);
   },
 
   getRecyclingData: function(){
@@ -59,12 +66,19 @@ Module.register("MMM-BadiAktuell", {
   socketNotificationReceived: function(notification, payload) {
     // Log.log(this.name + " received a socket notification: " + notification + " - Payload: " + payload);
 
-    if(notification == "CALENDAR_RESULT" && payload['result'].length >= 0){
+    if(notification == "TEMP_RESULT" && payload['result'].length >= 0){
       this.calendarData = payload['result'];    
       this.updateDom(1000);
-    } else if (notification == "CALENDAR_ERROR"){
+    } else if (notification == "TEMP_ERROR"){
       this.updateDom(1000);    
     }
+
+    // if(notification == "CALENDAR_RESULT" && payload['result'].length >= 0){
+    //   this.calendarData = payload['result'];    
+    //   this.updateDom(1000);
+    // } else if (notification == "CALENDAR_ERROR"){
+    //   this.updateDom(1000);    
+    // }
   },
 
   svgIconFactory: function(type) {

@@ -7,6 +7,31 @@ module.exports = NodeHelper.create({
     console.log("Starting node_helper.js for module: "+this.name);
   },
 
+
+  getTemperatureData: function(payload){
+
+    var url = new URL(payload.url);
+    console.log(url);
+
+    (async () => {
+      try {
+        fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          const parser = new DOMParser();
+          const xml = parser.parseFromString(data, "application/xml");
+          console.log(xml);
+          this.sendSocketNotification('CALENDAR_RESULT', xml);
+        })
+        .catch(this.sendSocketNotification('TEMP_ERROR', console.error));
+
+      } catch (error){
+        console.log(error);
+      }
+    })();
+  },
+
+  // old function
   getCalendarData: function(payload){
     var startdate = moment().format('YYYY-MM-DD');
     var enddate = moment(startdate, 'YYYY-MM-DD').add(payload.daysToDisplay, 'days').format('YYYY-MM-DD');
@@ -50,10 +75,14 @@ module.exports = NodeHelper.create({
 
 
   socketNotificationReceived: function(notification, payload) {
-    // console.log(this.name + " received a socket notification: " + notification + " - Payload: " + payload);
+    console.log(this.name + " received a socket notification: " + notification + " - Payload: " + payload);
 
     if(notification == "CALENDAR_GET"){
       this.getCalendarData(payload);
+    }
+
+    if(notification == "TEMP_GET"){
+      this.getTemperatureData(payload);
     }
   },
 })
