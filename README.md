@@ -10,8 +10,8 @@ Clone this repository in your modules folder, and install dependencies:
 
 ```
 cd ~/MagicMirror/modules 
-git clone https://github.com/FatTony404/MMM-RecyclingCalendar.git
-cd MMM-RecyclingCalendar
+git clone https://github.com/FatTony404/MMM-BadiAktuell.git
+cd MMM-BadiAktuell
 npm install 
 ```
 
