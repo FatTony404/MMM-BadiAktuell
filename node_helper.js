@@ -1,7 +1,7 @@
 const NodeHelper = require("node_helper");
 const moment = require("moment");
 const fetch = require("node-fetch");
-const xml2js = require('xml2js');
+const xml2js = require("xml2js");
 
 module.exports = NodeHelper.create({
   start: function() {
