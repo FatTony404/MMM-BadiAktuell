@@ -1,5 +1,5 @@
 {
-  "dependencies": {
+  "devDependencies": {
     "xml2js": "^0.4.23"
   }
 }
