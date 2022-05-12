@@ -1,6 +1,7 @@
 const NodeHelper = require("node_helper");
 const moment = require("moment");
 const fetch = require("node-fetch");
+const xml2js = require('xml2js');
 
 module.exports = NodeHelper.create({
   start: function() {
@@ -15,21 +16,27 @@ module.exports = NodeHelper.create({
 
     (async () => {
       try {
-        fetch(url)
-        .then(response => response.text())
-        .then(data => {
-          const parser = new DOMParser();
-          const xml = parser.parseFromString(data, "application/xml");
-          console.log(xml);
-          this.sendSocketNotification('CALENDAR_RESULT', xml);
-        })
-        .catch(this.sendSocketNotification('TEMP_ERROR', console.error));
+        var response = await fetch(url, {
+          method: 'GET', 
+          headers: {'Content-Type': 'application/json'}, 
+        });
+        var data;
+        const parser = new xml2js.Parser();
+        if(response.status >= 200 && response.status <= 299){
+          var content = await response.text();
+          data = await parser.parseStringPromise(content);
+          console.log(data);
+          this.sendSocketNotification('CALENDAR_RESULT', data);
+        } else {
+          console.log(response.status, response.statusText);
+          this.sendSocketNotification('CALENDAR_ERROR', "error");
+        }
 
       } catch (error){
         console.log(error);
       }
     })();
-  },
+  },  
 
   // old function
   getCalendarData: function(payload){
