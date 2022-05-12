@@ -12,7 +12,7 @@ module.exports = NodeHelper.create({
   getTemperatureData: function(payload){
 
     var url = new URL(payload.url);
-    console.log(url);
+    // console.log(url);
 
     (async () => {
       try {
@@ -25,7 +25,7 @@ module.exports = NodeHelper.create({
         if(response.status >= 200 && response.status <= 299){
           var content = await response.text();
           data = await parser.parseStringPromise(content);
-          console.log(data);
+          console.log("fetched data "+data);
           this.sendSocketNotification('CALENDAR_RESULT', data);
         } else {
           console.log(response.status, response.statusText);
