@@ -24,9 +24,9 @@ module.exports = NodeHelper.create({
         const parser = new xml2js.Parser();
         if(response.status >= 200 && response.status <= 299){
           var content = await response.text();
-          console.log("received text: "+content);
+          // console.log("received text: "+content);
           data = await parser.parseStringPromise(content);
-          console.log(data);
+          console.log(JSON.stringify(data));
           this.sendSocketNotification('CALENDAR_RESULT', data);
         } else {
           console.log(response.status, response.statusText);
